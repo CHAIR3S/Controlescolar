@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "REL_TBL_GRUPO_MATERIA")
+@Table(name = "REL_TBL_PROFESOR_MATERIA")
 public class ProfesorMateria implements Serializable {
 	
 	/**

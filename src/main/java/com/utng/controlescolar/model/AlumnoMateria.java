@@ -34,4 +34,5 @@ public class AlumnoMateria implements Serializable {
 	
 	@Column(name = "FK_ALUMNO")
 	private Integer alumno;
+	
 }

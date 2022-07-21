@@ -4,9 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -15,7 +18,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "CAT_TBL_ROL") //llamamos la tabla de la base de datos
+@Table(name = "CAT_TBL_PROMEDIO") //llamamos la tabla de la base de datos
 public class Promedio implements Serializable {
 
 	/**
@@ -41,6 +44,12 @@ public class Promedio implements Serializable {
 	@Column(name = "NUM_PROMEDIO")
 	private double promedio;
 	
+	@ManyToOne(fetch= FetchType.EAGER)
+	@JoinColumn(name = "FK_ALUMNO")
+	private Alumno alumno;
 	
+	@ManyToOne(fetch= FetchType.EAGER)
+	@JoinColumn(name = "FK_MATERIA")
+	private Materia materia;
 
 }

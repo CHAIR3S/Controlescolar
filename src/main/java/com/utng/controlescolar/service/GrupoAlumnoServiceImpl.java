@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.utng.controlescolar.model.GrupoAlumno;
+import com.utng.controlescolar.model.ProfesorMateria;
 import com.utng.controlescolar.repository.IGrupoAlumnoJpaRepository;
 import com.utng.controlescolar.repository.ResponseGC;
 
@@ -14,11 +14,11 @@ public class GrupoAlumnoServiceImpl implements IGrupoAlumnoService {
 	IGrupoAlumnoJpaRepository grupoAlumnoRepository;
 	
 	@Override
-	public ResponseGC<GrupoAlumno> ConsultarTodos() {
+	public ResponseGC<ProfesorMateria> ConsultarTodos() {
 		
-		ResponseGC<GrupoAlumno> response = new ResponseGC<>();// Inicializamos Clase Genérica ResponseGC
+		ResponseGC<ProfesorMateria> response = new ResponseGC<>();// Inicializamos Clase Genérica ResponseGC
 		
-		List<GrupoAlumno> listGA= grupoAlumnoRepository.findAll();
+		List<ProfesorMateria> listGA= grupoAlumnoRepository.findAll();
 		
 		response.setCount(listGA.size());
 		response.setList(listGA);

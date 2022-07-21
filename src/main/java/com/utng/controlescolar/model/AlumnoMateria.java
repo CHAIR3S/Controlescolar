@@ -15,7 +15,7 @@ import lombok.Setter;
 @Getter 
 @Setter
 @Entity
-@Table(name = "TBL_ALUMNO_MATERIAS")
+@Table(name = "REL_TBL_ALUMNO_MATERIA")
 public class AlumnoMateria implements Serializable {
 	
 	/**
@@ -26,18 +26,12 @@ public class AlumnoMateria implements Serializable {
 	@Id // Primary Key
 	@GeneratedValue(strategy = GenerationType.IDENTITY)  // Que va incrementando automáticamente cada primary key
 	
-	@Column(name = "ID_AL_MT")
+	@Column(name = "PK_AL_MT")
 	private Integer id;
 	
-	@Column(name = "EXPEDIENTE")
-	private String expediente;
-	
-	@Column(name = "ID_MATERIA")
+	@Column(name = "FK_MATERIA")
 	private Integer materia;
 	
-	@Column(name = "PROMEDIO")
-	private Double promedio;
-	
-	@Column(name = "ID_ALUMNO")
+	@Column(name = "FK_ALUMNO")
 	private Integer alumno;
 }

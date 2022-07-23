@@ -19,6 +19,6 @@ public interface ICicloService {
 	
 //	ResponseGC<Ciclo> ActualizarCiclo(Ciclo ciclo, Ciclo cicloUpdate);
 	
-	ResponseGC<Ciclo> BuscarPorNombreClave(CicloDTO cicloDto);
+	ResponseGC<Ciclo> BuscarPorCicloClave(CicloDTO cicloDto);
 
 }

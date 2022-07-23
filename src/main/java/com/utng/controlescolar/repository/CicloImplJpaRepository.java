@@ -200,7 +200,7 @@ public class CicloImplJpaRepository implements ICicloJpaRepository {
 	}
 
 	@Override
-	public List<Ciclo> findByNombreAndClave(String nombre, String clave) {
+	public List<Ciclo> findByCicloAndClave(String ciclo, String clave) {
 		// TODO Auto-generated method stub
 		return null;
 	}

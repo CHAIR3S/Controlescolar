@@ -22,13 +22,13 @@ public class CicloServiceImpl implements ICicloService {
 		
 		ResponseGC<Ciclo> response = new ResponseGC<>();// Inicializamos Clase Genérica ResponseGC
 
-		List<Ciclo> listaC = cicloRepository.findAll();// Igualamos una lista a findAll del repository que nos trae a
+		List<Ciclo> listC = cicloRepository.findAll();// Igualamos una lista a findAll del repository que nos trae a
 															// todos los ciclos
 
-		response.setCount(listaC.size());// Le damos a response el tamaño o total de ciclos que hay en la DB
+		response.setCount(listC.size());// Le damos a response el tamaño o total de ciclos que hay en la DB
 		response.setStatus("Oki");
 		response.setMessage("Consultar todos los ciclos realizado correctamente");
-		response.setList(listaC);// Le damos a la lista genérica de response todos los alumnos para regresar los
+		response.setList(listC);// Le damos a la lista genérica de response todos los alumnos para regresar los
 									// resultados
 		response.setData(null);
 
@@ -97,15 +97,15 @@ public class CicloServiceImpl implements ICicloService {
 //	}
 
 	@Override
-	public ResponseGC<Ciclo> BuscarPorNombreClave(CicloDTO cicloDto) {
+	public ResponseGC<Ciclo> BuscarPorCicloClave(CicloDTO cicloDto) {
 		
 		ResponseGC<Ciclo> response = new ResponseGC<>();
 		
-		String nombre, clave;
-		nombre = cicloDto.getNombre();
+		String ciclo, clave;
+		ciclo = cicloDto.getCiclo();
 		clave = cicloDto.getClave();
 		
-		List<Ciclo> lCiclo = cicloRepository.findByNombreAndClave(nombre, clave);
+		List<Ciclo> lCiclo = cicloRepository.findByCicloAndClave(ciclo, clave);
 		
 		if(!lCiclo.isEmpty() && lCiclo.size() == 1)
 		{

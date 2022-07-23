@@ -36,7 +36,7 @@ public class Ciclo implements Serializable {
 	private String clave;
 	
 	@Column(name = "TXT_DESC_CICLO")
-	private String desCiclo;
+	private String ciclo;
 	
 	@ManyToOne(fetch= FetchType.EAGER)  // Primero dice que puede haber muchos alumnos para un solo estatus. La Foreing Key EAGER hace que al llamar al periodo, cargue todo su contenido
 	@JoinColumn(name = "FK_PERIODO") //Liga la columna con el FK_PERIODO, que es  la FK

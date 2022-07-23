@@ -9,7 +9,7 @@ import com.utng.controlescolar.model.Ciclo;
 @Repository
 public interface ICicloJpaRepository extends JpaRepository<Ciclo, Integer>{
 	
-	List<Ciclo> findByNombreAndClave(String nombre, String clave);
+	List<Ciclo> findByCicloAndClave(String ciclo, String clave);
 
 //	ResponseGC<Ciclo> ActualizarCiclo(Ciclo ciclo, Ciclo cicloUpdate);
 }

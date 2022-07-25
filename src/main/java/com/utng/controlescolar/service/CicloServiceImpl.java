@@ -7,8 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.utng.controlescolar.dto.CicloDTO;
+import com.utng.controlescolar.dto.CicloFiltroDTO;
 import com.utng.controlescolar.model.Ciclo;
+import com.utng.controlescolar.model.Estatus;
+import com.utng.controlescolar.model.Periodo;
 import com.utng.controlescolar.repository.ICicloJpaRepository;
+import com.utng.controlescolar.repository.IEstatusJpaRepository;
+import com.utng.controlescolar.repository.IPeriodoJpaRepository;
 import com.utng.controlescolar.repository.ResponseGC;
 
 @Service
@@ -16,6 +21,12 @@ public class CicloServiceImpl implements ICicloService {
 
 	@Autowired
 	ICicloJpaRepository cicloRepository;
+	
+	@Autowired
+	IPeriodoJpaRepository periodoRepository;
+	
+	@Autowired
+	IEstatusJpaRepository estatusRepository;
 	
 	@Override
 	public ResponseGC<Ciclo> ConsultarTodos() {
@@ -36,9 +47,15 @@ public class CicloServiceImpl implements ICicloService {
 	}
 
 	@Override
-	public ResponseGC<Ciclo> GuardarCiclo(Ciclo ciclo) {
+	public ResponseGC<Ciclo> GuardarCiclo(CicloDTO cicloDto) {
 
 		ResponseGC<Ciclo> response = new ResponseGC<>();
+		
+		Integer idPeriodo = cicloDto.getPeriodo();
+		Integer idEstatus = cicloDto.getEstatus();
+		
+		Optional<Periodo> periodo = periodoRepository.findById(idPeriodo);
+		Optional <Estatus> estatus = estatusRepository.findById(idEstatus);
 		
 		Ciclo ciclo1 = cicloRepository.save(ciclo);
 		
@@ -97,7 +114,7 @@ public class CicloServiceImpl implements ICicloService {
 //	}
 
 	@Override
-	public ResponseGC<Ciclo> BuscarPorCicloClave(CicloDTO cicloDto) {
+	public ResponseGC<Ciclo> BuscarPorCicloClave(CicloFiltroDTO cicloDto) {
 		
 		ResponseGC<Ciclo> response = new ResponseGC<>();
 		

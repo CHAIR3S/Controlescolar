@@ -23,68 +23,68 @@ import com.utng.controlescolar.service.IAlumnoService;
 @RequestMapping("/alumno")
 public class AlumnoController {
 	
-	@Autowired
-	private IAlumnoService alumnoService;
-	
-	
-	@GetMapping(path = "/consultarTodos",
-			produces = MediaType.APPLICATION_JSON_VALUE)//lo que va a mandar al usuario
-	public ResponseEntity<ResponseGC<Alumno>> consultartodos(){
-		
-		ResponseGC<Alumno> alumnos = alumnoService.ConsultarTodos();
-		
-		return new ResponseEntity<ResponseGC<Alumno>> (alumnos, HttpStatus.OK);
-	}
-	
-	
-	@PostMapping(path = "/guardarAlumno",
-			produces = MediaType.APPLICATION_JSON_VALUE, //lo que va a mandar al usuario
-			consumes = MediaType.APPLICATION_JSON_VALUE) //lo que va a recibir
-	public ResponseEntity<ResponseGC <Alumno>> guardarAlumno (@RequestBody AlumnoDTO alumno){ //Requestbody es por que va a recibir
-		
-		//guardamos lo que mandó el método
-		ResponseGC<Alumno> response = alumnoService.GuardarAlumno(alumno);
-		
-		return new ResponseEntity<ResponseGC<Alumno>> (response, HttpStatus.OK);
-	}
-	
-	
-	@DeleteMapping(path = "/borrarAlumno/{idAlumno}",
-			produces = MediaType.APPLICATION_JSON_VALUE,
-			consumes = MediaType.APPLICATION_NDJSON_VALUE)
-	public ResponseEntity<ResponseGC<Alumno>> borrarAlumnoId(@PathVariable("idAlumno") Integer idAlumno){
-		
-		ResponseGC<Alumno> response = alumnoService.BorrarAlumnoId(idAlumno);
-		
-		return new ResponseEntity<ResponseGC<Alumno>> (response, HttpStatus.OK);
-	}
-	
+//	@Autowired
+//	private IAlumnoService alumnoService;
 //	
-//	@GetMapping(path = "/buscarAlumnoFiltro",
-//			produces = MediaType.APPLICATION_JSON_VALUE,
-//			consumes = MediaType.APPLICATION_JSON_VALUE)
-//	public ResponseEntity<ResponseGC<Alumno>> buscarAlumnoFiltro(AlumnoFiltroDTO filtro) {
+//	
+//	@GetMapping(path = "/consultarTodos",
+//			produces = MediaType.APPLICATION_JSON_VALUE)//lo que va a mandar al usuario
+//	public ResponseEntity<ResponseGC<Alumno>> consultartodos(){
 //		
-//		ResponseGC<Alumno> response = alumnoService.BuscarAlumno(filtro);
+//		ResponseGC<Alumno> alumnos = alumnoService.ConsultarTodos();
+//		
+//		return new ResponseEntity<ResponseGC<Alumno>> (alumnos, HttpStatus.OK);
+//	}
+//	
+//	
+//	@PostMapping(path = "/guardarAlumno",
+//			produces = MediaType.APPLICATION_JSON_VALUE, //lo que va a mandar al usuario
+//			consumes = MediaType.APPLICATION_JSON_VALUE) //lo que va a recibir
+//	public ResponseEntity<ResponseGC <Alumno>> guardarAlumno (@RequestBody AlumnoDTO alumno){ //Requestbody es por que va a recibir
+//		
+//		//guardamos lo que mandó el método
+//		ResponseGC<Alumno> response = alumnoService.GuardarAlumno(alumno);
 //		
 //		return new ResponseEntity<ResponseGC<Alumno>> (response, HttpStatus.OK);
 //	}
-	
-	
-	@GetMapping(path = "/buscarAlumnoPorId/{alumnoId}",
-			produces = MediaType.APPLICATION_JSON_VALUE,
-			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseGC<Alumno>> buscarAlumnoPorId(@PathVariable("alumnoId")Integer alumnoId) {
-		
-		ResponseGC<Alumno> response = alumnoService.BuscarAlumnoId(alumnoId);
-		
-		return new ResponseEntity<ResponseGC<Alumno>> (response, HttpStatus.OK);
-	}
-	
-	
-	
-	
-	
-	
+//	
+//	
+//	@DeleteMapping(path = "/borrarAlumno/{idAlumno}",
+//			produces = MediaType.APPLICATION_JSON_VALUE,
+//			consumes = MediaType.APPLICATION_NDJSON_VALUE)
+//	public ResponseEntity<ResponseGC<Alumno>> borrarAlumnoId(@PathVariable("idAlumno") Integer idAlumno){
+//		
+//		ResponseGC<Alumno> response = alumnoService.BorrarAlumnoId(idAlumno);
+//		
+//		return new ResponseEntity<ResponseGC<Alumno>> (response, HttpStatus.OK);
+//	}
+//	
+////	
+////	@GetMapping(path = "/buscarAlumnoFiltro",
+////			produces = MediaType.APPLICATION_JSON_VALUE,
+////			consumes = MediaType.APPLICATION_JSON_VALUE)
+////	public ResponseEntity<ResponseGC<Alumno>> buscarAlumnoFiltro(AlumnoFiltroDTO filtro) {
+////		
+////		ResponseGC<Alumno> response = alumnoService.BuscarAlumno(filtro);
+////		
+////		return new ResponseEntity<ResponseGC<Alumno>> (response, HttpStatus.OK);
+////	}
+//	
+//	
+//	@GetMapping(path = "/buscarAlumnoPorId/{alumnoId}",
+//			produces = MediaType.APPLICATION_JSON_VALUE,
+//			consumes = MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<ResponseGC<Alumno>> buscarAlumnoPorId(@PathVariable("alumnoId")Integer alumnoId) {
+//		
+//		ResponseGC<Alumno> response = alumnoService.BuscarAlumnoId(alumnoId);
+//		
+//		return new ResponseEntity<ResponseGC<Alumno>> (response, HttpStatus.OK);
+//	}
+//	
+//	
+//	
+//	
+//	
+//	
 
 }

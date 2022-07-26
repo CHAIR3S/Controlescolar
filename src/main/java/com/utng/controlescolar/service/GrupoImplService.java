@@ -50,7 +50,6 @@ public class GrupoImplService implements IGrupoService {
 		{
 			grupo.setId(grupoDto.getId());
 			grupo.setCiclo(optionalCiclo.get());
-			grupo.setEstatus(grupoDto.getEstatus());
 			grupo.setGrupo(grupoDto.getGrupo());
 			
 			grupoRepository.save(grupo);

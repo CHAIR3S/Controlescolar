@@ -49,8 +49,6 @@ public class MateriaServiceImpl implements IMateriaService {
 		{
 			materia.setClave(materiaDto.getClave());
 			materia.setCiclo(optionalCiclo.get());
-			materia.setEstatus(materiaDto.getEstatus());
-			materia.setNombre(materiaDto.getNombre());
 			
 			materiaRepository.save(materia);
 			

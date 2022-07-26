@@ -58,7 +58,6 @@ public class AlumnoServiceImpl implements IAlumnoService {
 			alumno.setExpediente(alumnoDto.getExpediente());
 			alumno.setEstatus(alumno.getEstatus());
 			alumno.setCurp(alumnoDto.getCurp());
-			alumno.setCiclo(optionalCiclo.get());
 
 			alumnoRepository.save(alumno);// Guardar en la base de datos al nuevo alumno
 

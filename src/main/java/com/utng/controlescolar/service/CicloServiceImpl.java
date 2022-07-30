@@ -117,15 +117,15 @@ public class CicloServiceImpl implements ICicloService {
 		return response;
 	}
 
-	@Override
-	public ResponseGC<Ciclo> ActualizarCiclo(Ciclo ciclo, Ciclo cicloUpdate) {
-		
-		ResponseGC<Ciclo> response = new ResponseGC<>();
-		
-		response = cicloRepository.ActualizarCiclo(ciclo, cicloUpdate);
-		
-		return response;
-	}
+//	@Override
+//	public ResponseGC<Ciclo> ActualizarCiclo(Ciclo ciclo, Ciclo cicloUpdate) {
+//		
+//		ResponseGC<Ciclo> response = new ResponseGC<>();
+//		
+//		response = cicloRepository.ActualizarCiclo(ciclo, cicloUpdate);
+//		
+//		return response;
+//	}
 
 	@Override
 	public ResponseGC<Ciclo> BuscarPorCicloClave(CicloFiltroDTO cicloDto) {

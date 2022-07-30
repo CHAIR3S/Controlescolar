@@ -13,12 +13,12 @@ public interface ICicloService {
 	ResponseGC<Ciclo> ConsultarTodos();
 	
 	ResponseGC<Ciclo> GuardarCiclo(CicloDTO cicloDto);
-	
+	 
 	ResponseGC<Ciclo> BuscarCicloPorId(Integer id);
 	
 	ResponseGC<Ciclo> BorrarCicloPorId(Integer id);
 	
-	ResponseGC<Ciclo> ActualizarCiclo(Ciclo ciclo, Ciclo cicloUpdate);
+//	ResponseGC<Ciclo> ActualizarCiclo(Ciclo ciclo, Ciclo cicloUpdate);
 	
 	ResponseGC<Ciclo> BuscarPorCicloClave(CicloFiltroDTO cicloDto);
 

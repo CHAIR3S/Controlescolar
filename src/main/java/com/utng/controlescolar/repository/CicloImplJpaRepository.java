@@ -209,41 +209,41 @@ public class CicloImplJpaRepository implements ICicloJpaRepository {
 		return null;
 	}
 
-	@Override
-	public ResponseGC<Ciclo> ActualizarCiclo(Ciclo ciclo, Ciclo cicloUpdate){
-
-		ResponseGC<Ciclo> response = new ResponseGC<>();
-
-		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-		CriteriaUpdate<Ciclo> configConsulta = cb.createCriteriaUpdate(Ciclo.class);
-		Root<Ciclo> raizCiclo = configConsulta.from(Ciclo.class);
-
-		configConsulta.set(raizCiclo.<Integer>get("id"), cicloUpdate.getId())
-				.set(raizCiclo.<String>get("clave"), cicloUpdate.getClave())
-				.set(raizCiclo.<String>get("ciclo"), cicloUpdate.getCiclo())
-				.set(raizCiclo.<Estatus>get("estatus"), cicloUpdate.getEstatus())
-				.set(raizCiclo.<Periodo>get("periodo"), cicloUpdate.getPeriodo())
-				.set(raizCiclo.<Date>get("fechaInicio"), cicloUpdate.getFechaInicio())
-				.set(raizCiclo.<Date>get("fechaFin"), cicloUpdate.getFechaFin())
-				
-				.where(cb.equal(raizCiclo.get("id"), ciclo.getId()))
-				.where(cb.equal(raizCiclo.get("clave"), ciclo.getClave()))
-				.where(cb.equal(raizCiclo.get("ciclo"), ciclo.getCiclo()))
-				.where(cb.equal(raizCiclo.get("estatus"), ciclo.getEstatus()))
-				.where(cb.equal(raizCiclo.get("periodo"), ciclo.getPeriodo()));
-
-		Query update = entityManager.createQuery(configConsulta);
-		
-		update.executeUpdate();
-		
-		entityManager.close();
-		
-		response.setData(ciclo);
-		response.setList(null);
-		response.setMessage("Ciclo actualizado correctamente");
-		response.setStatus("Okisin");
-
-		return response;
-	}
+//	@Override
+//	public ResponseGC<Ciclo> ActualizarCiclo(Ciclo ciclo, Ciclo cicloUpdate){
+//
+//		ResponseGC<Ciclo> response = new ResponseGC<>();
+//
+//		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+//		CriteriaUpdate<Ciclo> configConsulta = cb.createCriteriaUpdate(Ciclo.class);
+//		Root<Ciclo> raizCiclo = configConsulta.from(Ciclo.class);
+//
+//		configConsulta.set(raizCiclo.<Integer>get("id"), cicloUpdate.getId())
+//				.set(raizCiclo.<String>get("clave"), cicloUpdate.getClave())
+//				.set(raizCiclo.<String>get("ciclo"), cicloUpdate.getCiclo())
+//				.set(raizCiclo.<Estatus>get("estatus"), cicloUpdate.getEstatus())
+//				.set(raizCiclo.<Periodo>get("periodo"), cicloUpdate.getPeriodo())
+//				.set(raizCiclo.<Date>get("fechaInicio"), cicloUpdate.getFechaInicio())
+//				.set(raizCiclo.<Date>get("fechaFin"), cicloUpdate.getFechaFin())
+//				
+//				.where(cb.equal(raizCiclo.get("id"), ciclo.getId()))
+//				.where(cb.equal(raizCiclo.get("clave"), ciclo.getClave()))
+//				.where(cb.equal(raizCiclo.get("ciclo"), ciclo.getCiclo()))
+//				.where(cb.equal(raizCiclo.get("estatus"), ciclo.getEstatus()))
+//				.where(cb.equal(raizCiclo.get("periodo"), ciclo.getPeriodo()));
+//
+//		Query update = entityManager.createQuery(configConsulta);
+//		
+//		update.executeUpdate();
+//		
+//		entityManager.close();
+//		
+//		response.setData(ciclo);
+//		response.setList(null);
+//		response.setMessage("Ciclo actualizado correctamente");
+//		response.setStatus("Okisin");
+//
+//		return response;
+//	}
 
 }

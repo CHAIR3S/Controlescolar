@@ -208,19 +208,41 @@ public class AlumnoImplJpaRepository implements IAlumnoJpaRepository {
 		return null;
 	}
 
+	@Override
+	public List<Alumno> findByExpediente(String expediente) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 //	@Override
-//	public ResponseGC<Alumno> BuscarAlumnoFiltro(AlumnoFiltroDTO filtro) {
+//	public ResponseGC<Alumno> consultarAlumnoFiltro(AlumnoFiltroDTO filtro) {
 //
 //		ResponseGC<Alumno> response = new ResponseGC<>();// Inicializamos Clase Genérica ResponseGC
+//		
+//		List<Predicate> predicates = new ArrayList<>();
 //
 //		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-//
 //		CriteriaQuery<Alumno> configConsulta = cb.createQuery(Alumno.class);
 //		Root<Alumno> raizAlumno = configConsulta.from(Alumno.class);
-//		configConsulta.select(raizAlumno);
-//		configConsulta.where(cb.equal(raizAlumno.get("curp"), filtro.getCurp()),
-//				cb.equal(raizAlumno.get("correo"), filtro.getCorreo()),
-//				cb.equal(raizAlumno.get("expediente"), filtro.getExpediente()));
+//		
+//		// Creando los predicados que se van a usar en la consulta y comprobando si no están vacíos
+//		if (filtro.getCorreo() != null) {
+//	        predicates.add(
+//	        		cb.equal(raizAlumno.get("TXT_EXPEDIENTE"), filtro.getExpediente()));
+//	    }
+//		if (filtro.getCurp() != null) {
+//	        predicates.add(
+//	        		cb.equal(raizAlumno.get("TXT_CURP"), filtro.getCurp()));
+//	    }
+//		if (filtro.getExpediente() != null) {
+//	        predicates.add(
+//	        		cb.equal(raizAlumno.get("TXT_EXPEDIENTE"), filtro.getExpediente()));
+//	    }
+//		
+//		Predicate [] predicatesarr = predicates.toArray(new Predicate[predicates.size()]);
+//		
+//		configConsulta.select(raizAlumno)
+//		.where(predicatesarr);
 //
 //		List<Alumno> alumno = entityManager.createQuery(configConsulta).getResultList();
 //
@@ -229,7 +251,9 @@ public class AlumnoImplJpaRepository implements IAlumnoJpaRepository {
 //			response.setCount(alumno.size());
 //			response.setList(alumno);
 //			response.setMessage("Consulta realizada con éxito");
-//		} else {
+//		} 
+//		else 
+//		{
 //			response.setStatus("No encontrado");
 //			response.setCount(alumno.size());
 //			response.setList(null);
@@ -238,6 +262,7 @@ public class AlumnoImplJpaRepository implements IAlumnoJpaRepository {
 //		}
 //
 //		entityManager.close();
+//		
 //		return response;
 //	}
 

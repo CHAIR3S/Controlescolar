@@ -9,9 +9,12 @@ import org.springframework.stereotype.Service;
 import com.utng.controlescolar.dto.AlumnoDTO;
 import com.utng.controlescolar.dto.AlumnoFiltroDTO;
 import com.utng.controlescolar.model.Alumno;
-import com.utng.controlescolar.model.Ciclo;
+import com.utng.controlescolar.model.Estatus;
+import com.utng.controlescolar.model.Grupo;
 import com.utng.controlescolar.repository.IAlumnoJpaRepository;
-import com.utng.controlescolar.repository.ICicloJpaRepository;
+import com.utng.controlescolar.repository.IConsultaAlumnoRepository;
+import com.utng.controlescolar.repository.IEstatusJpaRepository;
+import com.utng.controlescolar.repository.IGrupoJpaRepository;
 import com.utng.controlescolar.repository.ResponseGC;
 
 @Service
@@ -19,9 +22,15 @@ public class AlumnoServiceImpl implements IAlumnoService {
 
 	@Autowired
 	IAlumnoJpaRepository alumnoRepository;
+	
+	@Autowired
+	IConsultaAlumnoRepository consultaAlumnoRepository;
 
 	@Autowired
-	ICicloJpaRepository cicloRepository;
+	IGrupoJpaRepository grupoRepository;
+	
+	@Autowired
+	IEstatusJpaRepository estatusRepository;
 
 	@Override
 	public ResponseGC<Alumno> ConsultarTodos() {
@@ -46,27 +55,34 @@ public class AlumnoServiceImpl implements IAlumnoService {
 
 		ResponseGC<Alumno> response = new ResponseGC<>();// Inicializamos Clase Genérica ResponseGC
 
-		Optional<Ciclo> optionalCiclo = cicloRepository.findById(alumnoDto.getCiclo());// Optional variable local para
-		// comparar y ver si existe ese ciclo en la DB
+		Optional<Estatus> estatusOptional = estatusRepository.findById(alumnoDto.getEstatus());
+		Optional<Grupo> grupoOptional = grupoRepository.findById(alumnoDto.getGrupo());// Optional variable local para
+		// comparar y ver si existe ese grupo en la DB
 
-		if (optionalCiclo.isPresent())// Si el idCiclo fue encontrado
+		if (!grupoOptional.isEmpty())// Si el idCiclo fue encontrado
 		{
 			Alumno alumno = new Alumno();// Alumno que se va a guardar
 
-			alumno.setNombre(alumnoDto.getNombre());
-			alumno.setGenero(alumnoDto.getGenero());
 			alumno.setExpediente(alumnoDto.getExpediente());
-			alumno.setEstatus(alumno.getEstatus());
+			alumno.setNombre(alumnoDto.getNombre());
+			alumno.setApePaterno(alumnoDto.getApePaterno());
+			alumno.setApeMaterno(alumnoDto.getApeMaterno());
 			alumno.setCurp(alumnoDto.getCurp());
+			alumno.setGenero(alumnoDto.getGenero());
+			alumno.setCorreo(alumnoDto.getCorreo());
+			alumno.setEstatus(estatusOptional.get());
+			alumno.setGrupo(grupoOptional.get());
 
 			alumnoRepository.save(alumno);// Guardar en la base de datos al nuevo alumno
 
 			response.setStatus("Oki doki");
 			response.setMessage("Se guardó al alumno correctamente");
 			response.setData(alumno);
-		} else {
+		}
+		else 
+		{
 			response.setStatus("Nel");
-			response.setMessage("El ciclo que escribiste no existe");
+			response.setMessage("El grupo que escribiste no existe");
 			response.setData(null);
 		}
 		return response;
@@ -76,7 +92,7 @@ public class AlumnoServiceImpl implements IAlumnoService {
 	public ResponseGC<Alumno> BorrarAlumnoId(Integer idAlumno) {
 
 		ResponseGC<Alumno> response = new ResponseGC<>();// Inicializamos Clase Genérica ResponseGC
-
+		
 		alumnoRepository.deleteById(idAlumno);// elimina alumno por id por método de la clase heredada JpaRepository
 
 		response.setData(null);
@@ -95,6 +111,7 @@ public class AlumnoServiceImpl implements IAlumnoService {
 		Optional<Alumno> alumno = alumnoRepository.findById(idAlumno);// elimina alumno por id por método de la clase heredada JpaRepository
 
 		response.setData(alumno.get());
+		response.setList(null);
 		response.setMessage("Alumno encontrado correctamente");
 		response.setStatus("Oki doki");
 
@@ -102,24 +119,24 @@ public class AlumnoServiceImpl implements IAlumnoService {
 	}
 
 
-//	@Override
-//	public ResponseGC<Alumno> ActualizarAlumno(AlumnoDTO alumnoDtoUpdate, Alumno alumno){
-//
-//		ResponseGC<Alumno> response = new ResponseGC<>();// Inicializamos Clase Genérica ResponseGC
-//		
-//		response = alumnoRepository.SemiActualizarAlumno(alumnoDtoUpdate, alumno);
-//
-//		return response;
-//	}
+	@Override
+	public ResponseGC<Alumno> ActualizarAlumno(AlumnoDTO alumnoDtoUpdate, AlumnoFiltroDTO filtro){
 
-//	@Override
-//	public ResponseGC<Alumno> BuscarAlumno(AlumnoFiltroDTO filtro) {
-//
-//		ResponseGC<Alumno> response = new ResponseGC<>();// Inicializamos Clase Genérica ResponseGC
-//
-//		response = alumnoRepository.BuscarAlumnoFiltro(filtro);
-//
-//		return response;
-//	}
+		ResponseGC<Alumno> response = new ResponseGC<>();// Inicializamos Clase Genérica ResponseGC
+		
+		response = consultaAlumnoRepository.actualizarAlumno(alumnoDtoUpdate, filtro);
+
+		return response;
+	}
+
+	@Override
+	public ResponseGC<Alumno> BuscarAlumno(AlumnoFiltroDTO filtro) {
+
+		ResponseGC<Alumno> response = new ResponseGC<>();// Inicializamos Clase Genérica ResponseGC
+
+		response = consultaAlumnoRepository.consultarAlumnoFiltro(filtro);
+
+		return response;
+	}
 
 }

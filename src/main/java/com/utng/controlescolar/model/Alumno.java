@@ -27,7 +27,7 @@ public class Alumno implements Serializable{
 	@Id // Primary Key
 	@GeneratedValue(strategy = GenerationType.IDENTITY)  // Que va incrementando automáticamente cada primary key 
 	
-	@Column(name = "ID_ALUMNO")
+	@Column(name = "PK_ALUMNO")
 	private Integer id;
 	
 	@Column(name = "TXT_EXPEDIENTE")

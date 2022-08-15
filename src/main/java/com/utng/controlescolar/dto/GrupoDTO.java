@@ -11,6 +11,6 @@ public class GrupoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String grupo;
-	private String estatus;
+	private Integer estatus;
 	private Integer ciclo;
 }

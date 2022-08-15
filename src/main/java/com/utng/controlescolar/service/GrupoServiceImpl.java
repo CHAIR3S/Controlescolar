@@ -14,7 +14,7 @@ import com.utng.controlescolar.repository.IGrupoJpaRepository;
 import com.utng.controlescolar.repository.ResponseGC;
 
 @Service
-public class GrupoImplService implements IGrupoService {
+public class GrupoServiceImpl implements IGrupoService {
 
 	@Autowired
 	IGrupoJpaRepository grupoRepository;

@@ -33,7 +33,7 @@ public class Materia implements Serializable{
 	private String clave;
 	
 	@Column(name = "DES_MATERIA")
-	private String materia;
+	private String nombre;
 	
 	@ManyToOne(fetch= FetchType.EAGER)  // Primero dice que puede haber muchos alumnos para un solo estatus. La Foreing Key EAGER hace que al llamar al ciclo, cargue todo su contenido
 	@JoinColumn(name = "FK_STATUS") //Liga la columna con el FK_STATUS, que es  la FK

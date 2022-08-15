@@ -16,9 +16,9 @@ public interface IAlumnoService {
 	
 	ResponseGC<Alumno> BorrarAlumnoId(Integer idAlumno);
 	
-//	ResponseGC<Alumno> BuscarAlumno(AlumnoFiltroDTO filtro);
+	ResponseGC<Alumno> BuscarAlumno(AlumnoFiltroDTO filtro);
 
-//	ResponseGC<Alumno> ActualizarAlumno(AlumnoDTO alumnoDtoUpdate, Alumno alumno);
+	ResponseGC<Alumno> ActualizarAlumno(AlumnoDTO alumnoDtoUpdate, AlumnoFiltroDTO filtro);
 	
 	ResponseGC<Alumno> BuscarAlumnoId(Integer idAlumno);
 

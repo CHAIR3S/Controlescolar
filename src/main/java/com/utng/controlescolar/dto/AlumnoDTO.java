@@ -10,10 +10,14 @@ public class AlumnoDTO implements Serializable {
 
 	private String expediente;
 	private String nombre;
+	private String apePaterno;
+	private String apeMaterno;
 	private String curp;
 	private String genero;
 	private String correo;
-	private String estatus;
+//	private Byte[] image;
+	// id de estatus
+	private Integer estatus;
 	// id de ciclo
-	private Integer ciclo;
+	private Integer grupo;
 }

@@ -3,6 +3,7 @@ package com.utng.controlescolar.service;
 import org.springframework.stereotype.Service;
 
 import com.utng.controlescolar.dto.MateriaDTO;
+import com.utng.controlescolar.dto.MateriaFiltroDTO;
 import com.utng.controlescolar.model.Materia;
 import com.utng.controlescolar.repository.ResponseGC;
 
@@ -17,7 +18,7 @@ public interface IMateriaService {
 	
 	ResponseGC<Materia> BorrarMateriaPorId(Integer id);
 	
-//	ResponseGC<Materia> ActualizarMateria(Materia materia, MateriaDTO materiaDto);
+	ResponseGC<Materia> ActualizarMateria(MateriaFiltroDTO filtro, MateriaDTO materiaDto);
 	
 	ResponseGC<Materia> BuscarMateriaPorNombreClave (String nombre, String clave);
 

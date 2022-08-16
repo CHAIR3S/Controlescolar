@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.utng.controlescolar.dto.GrupoDTO;
 import com.utng.controlescolar.model.Ciclo;
+import com.utng.controlescolar.model.Estatus;
 import com.utng.controlescolar.model.Grupo;
 import com.utng.controlescolar.repository.ICicloJpaRepository;
+import com.utng.controlescolar.repository.IEstatusJpaRepository;
 import com.utng.controlescolar.repository.IGrupoJpaRepository;
 import com.utng.controlescolar.repository.ResponseGC;
 
@@ -21,6 +23,9 @@ public class GrupoServiceImpl implements IGrupoService {
 	
 	@Autowired
 	ICicloJpaRepository cicloRepository;
+	
+	@Autowired
+	IEstatusJpaRepository estatusRepository;
 	
 	@Override
 	public ResponseGC<Grupo> ConsultarTodos() {
@@ -45,12 +50,14 @@ public class GrupoServiceImpl implements IGrupoService {
 		Grupo grupo = new Grupo();
 		
 		Optional<Ciclo> optionalCiclo = cicloRepository.findById(grupoDto.getCiclo());
+		Optional<Estatus> optionalEstatus = estatusRepository.findById(grupoDto.getEstatus());
 		
 		if(!optionalCiclo.isEmpty())
 		{
 			grupo.setId(grupoDto.getId());
 			grupo.setCiclo(optionalCiclo.get());
 			grupo.setGrupo(grupoDto.getGrupo());
+			grupo.setEstatus(optionalEstatus.get());
 			
 			grupoRepository.save(grupo);
 			
@@ -106,16 +113,6 @@ public class GrupoServiceImpl implements IGrupoService {
 		
 		return response;
 	}
-
-//	@Override
-//	public ResponseGC<Grupo> ActualizarGrupo(GrupoDTO grupoUpdate, Grupo grupo) {
-//		
-//		ResponseGC<Grupo> response = new ResponseGC<>();
-//		
-//		response = grupoRepository.ActualizarGrupo(grupo, grupoUpdate);
-//		
-//		return response;
-//	}
 
 	@Override
 	public ResponseGC<Grupo> BuscarPorNombreClave(String grupo, Integer id) {

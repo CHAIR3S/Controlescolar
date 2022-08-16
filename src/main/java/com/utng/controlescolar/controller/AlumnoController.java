@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.DeleteMapping;
 
@@ -34,11 +33,11 @@ public class AlumnoController {
 	
 	@GetMapping(path = "/consultarTodos",
 			produces = MediaType.APPLICATION_JSON_VALUE)//lo que va a mandar al usuario
-	public ResponseEntity<ResponseGC<Alumno>> consultartodos(){
+	public ResponseEntity<ResponseGC<Alumno>> consultarTodos(){
 		
-		ResponseGC<Alumno> alumnos = alumnoService.ConsultarTodos();
+		ResponseGC<Alumno> response = alumnoService.ConsultarTodos();
 		
-		return new ResponseEntity<ResponseGC<Alumno>> (alumnos, HttpStatus.OK);
+		return new ResponseEntity<ResponseGC<Alumno>> (response, HttpStatus.OK);
 	}
 	
 	

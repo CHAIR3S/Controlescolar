@@ -17,8 +17,6 @@ public interface IGrupoService {
 	
 	ResponseGC<Grupo> BorrarGrupoPorId(Integer id);
 	
-//	ResponseGC<Grupo> ActualizarGrupo(GrupoDTO grupoUpdate, Grupo grupo);
-	
 	ResponseGC<Grupo> BuscarPorNombreClave(String grupo, Integer id);
 	
 	

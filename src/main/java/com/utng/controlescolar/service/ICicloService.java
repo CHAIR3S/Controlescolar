@@ -18,8 +18,6 @@ public interface ICicloService {
 	
 	ResponseGC<Ciclo> BorrarCicloPorId(Integer id);
 	
-//	ResponseGC<Ciclo> ActualizarCiclo(Ciclo ciclo, Ciclo cicloUpdate);
-	
 	ResponseGC<Ciclo> BuscarPorCicloClave(CicloFiltroDTO cicloDto);
 
 }

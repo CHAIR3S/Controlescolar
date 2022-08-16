@@ -12,5 +12,4 @@ public interface ICicloJpaRepository extends JpaRepository<Ciclo, Integer>{
 	
 	List<Ciclo> findByCicloAndClave(String ciclo, String clave);
 
-//	ResponseGC<Ciclo> ActualizarCiclo(Ciclo ciclo, Ciclo cicloUpdate);
 }

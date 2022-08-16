@@ -30,7 +30,7 @@ public class Profesor implements Serializable {
 	private Integer id;
 	
 	@Column(name = "TXT_CLAVE")
-	private String Clave;
+	private String clave;
 	
 	@Column(name = "TXT_NOMBRE")
 	private String nombre;

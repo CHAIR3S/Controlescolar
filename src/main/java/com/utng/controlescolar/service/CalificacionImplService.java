@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.utng.controlescolar.dto.CalificacionAndFiltroDTO;
 import com.utng.controlescolar.dto.CalificacionDTO;
 import com.utng.controlescolar.dto.CalificacionFiltroDTO;
 import com.utng.controlescolar.model.Alumno;
@@ -124,9 +125,13 @@ public class CalificacionImplService implements ICalificacionService {
 	}
 
 	@Override
-	public ResponseGC<Calificacion> ActualizarCalificacion(CalificacionDTO calificacionUpdate, CalificacionFiltroDTO filtro) {
+	public ResponseGC<Calificacion> ActualizarCalificacion(CalificacionAndFiltroDTO upToDate) {
 
 		ResponseGC<Calificacion> response = new ResponseGC<>();// Inicializamos Clase Genérica ResponseGC
+		
+		CalificacionDTO calificacionUpdate = upToDate.getCalificacionUpdate();
+		
+		CalificacionFiltroDTO filtro = upToDate.getFiltro();
 		
 		response = consultaCalificacioRepository.actualizarCalificacion(calificacionUpdate, filtro);
 

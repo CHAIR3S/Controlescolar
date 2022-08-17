@@ -3,11 +3,13 @@ package com.utng.controlescolar.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.utng.controlescolar.model.ProMatGru;
 import com.utng.controlescolar.repository.IProMatGruJpaRepository;
 import com.utng.controlescolar.repository.ResponseGC;
 
+@Service
 public class ProMatGruImplService implements IProMatGruService {
 
 	@Autowired

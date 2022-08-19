@@ -53,7 +53,7 @@ public class MateriaController {
 	}
 	
 	
-	@DeleteMapping(path = "/borrarMateria/{idMateria}",
+	@DeleteMapping(path = "/borrarMateriaId/{idMateria}",
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseGC<Materia>> borrarMateriaId(@PathVariable("idMateria") Integer idMateria){
 		

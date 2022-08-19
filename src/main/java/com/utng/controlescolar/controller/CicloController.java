@@ -51,7 +51,7 @@ public class CicloController {
 	}
 	
 	
-	@DeleteMapping(path = "/borrarCiclo/{idCiclo}",
+	@DeleteMapping(path = "/borrarCicloId/{idCiclo}",
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseGC<Ciclo>> borrarCicloId(@PathVariable("idCiclo") Integer idCiclo){
 		

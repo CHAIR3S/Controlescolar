@@ -71,14 +71,11 @@ public class CalificacionController {
 		return new ResponseEntity<ResponseGC<Calificacion>> (response, HttpStatus.OK);
 	}
 	
-	@GetMapping(path = "/buscarCalificacionFiltro/",
+	@GetMapping(path = "/buscarCalificacionAlumno/{idAlumno}",
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseGC<Calificacion>> buscarCalificacionFiltro(CalificacionFiltroDTO filtro) {
+	public ResponseEntity<ResponseGC<Calificacion>> buscarCalificacionAlumno(@PathVariable("idAlumno")Integer idAlumno) {
 		
-		Integer alumno = filtro.getAlumno();
-		Integer materia = filtro.getMateria();
-		
-		ResponseGC<Calificacion> response = calificacionService.BuscarCalificacionMateriaAlumno(alumno, materia);
+		ResponseGC<Calificacion> response = calificacionService.BuscarCalificacionAlumno(idAlumno);
 		
 		return new ResponseEntity<ResponseGC<Calificacion>> (response, HttpStatus.OK);
 	}
@@ -86,7 +83,7 @@ public class CalificacionController {
 	
 	@GetMapping(path = "/buscarCalificacionPorId/{calificacionId}",
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseGC<Calificacion>> buscarCalificacionPorId(@PathVariable ("alumnoId") Integer calificacionId) {
+	public ResponseEntity<ResponseGC<Calificacion>> buscarCalificacionPorId(@PathVariable ("calificacionId") Integer calificacionId) {
 		
 		ResponseGC<Calificacion> response = calificacionService.BuscarCalificacionId(calificacionId);
 		

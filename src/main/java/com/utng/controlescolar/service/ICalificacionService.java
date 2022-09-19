@@ -13,7 +13,7 @@ public interface ICalificacionService {
 	
 	ResponseGC<Calificacion> BorrarCalificacionId(Integer idCalificacion);
 	
-	ResponseGC<Calificacion> BuscarCalificacionMateriaAlumno (Integer alumno, Integer materia);
+	ResponseGC<Calificacion> BuscarCalificacionAlumno (Integer alumno);
 
 	ResponseGC<Calificacion> ActualizarCalificacion(CalificacionAndFiltroDTO upToDate);
 	

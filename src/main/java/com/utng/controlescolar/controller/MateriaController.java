@@ -76,7 +76,7 @@ public class MateriaController {
 		return new ResponseEntity<ResponseGC<Materia>> (response, HttpStatus.OK);
 	}
 	
-	@GetMapping(path = "/buscarMateriaFiltro/",
+	@GetMapping(path = "/buscarMateriaFiltro",
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseGC<Materia>> buscarMateriaFiltro(MateriaFiltroDTO filtro) {
 		
@@ -98,6 +98,12 @@ public class MateriaController {
 		return new ResponseEntity<ResponseGC<Materia>> (response, HttpStatus.OK);
 	}
 	
-	
-
+//	@GetMapping(path = "/buscarMateriasIds",
+//			produces = MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<ResponseGC<Materia>> buscarMateriasIds(Integer[] materiasIds) {
+//		
+//		ResponseGC<Materia> response = materiaService.BuscarMateriasPorIds(materiasIds);
+//		
+//		return new ResponseEntity<ResponseGC<Materia>> (response, HttpStatus.OK);
+//	}
 }

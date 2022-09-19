@@ -100,11 +100,14 @@ public class CalificacionImplService implements ICalificacionService {
 	}
 
 	@Override
-	public ResponseGC<Calificacion> BuscarCalificacionMateriaAlumno (Integer alumno, Integer materia) {
+	public ResponseGC<Calificacion> BuscarCalificacionAlumno (Integer alumno) {
 
 		ResponseGC<Calificacion> response = new ResponseGC<>();// Inicializamos Clase Genérica ResponseGC
 
-		List<Calificacion> calificacionList = caliRepository.findByAlumnoAndMateria(alumno, materia);
+
+		Optional<Alumno> alumnoOptional = alumnoRepository.findById(alumno);
+		
+		List<Calificacion> calificacionList = caliRepository.findByAlumno(alumnoOptional.get());
 		
 		if(!calificacionList.isEmpty())
 		{

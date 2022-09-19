@@ -6,6 +6,7 @@ import com.utng.controlescolar.repository.IEstatusJpaRepository;
 import com.utng.controlescolar.repository.IMateriaJpaRepository;
 import com.utng.controlescolar.repository.ResponseGC;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -145,5 +146,35 @@ public class MateriaServiceImpl implements IMateriaService {
 
 		return response;
 	}
+
+//	@Override
+//	public ResponseGC<Materia> BuscarMateriasPorIds(Integer[] materiasIds) {
+//		
+//		ResponseGC<Materia> response = new ResponseGC<>();
+//		List<Materia> lMateria = new ArrayList<>();
+//		for(int i= 0; i < materiasIds.length; i++) {
+//			Optional<Materia> materia;
+//			Integer id = materiasIds[i];
+//			
+//			materia = materiaRepository.findById(id);
+//			lMateria.add(i, materia.get());
+//		}
+//		
+//		if (!lMateria.isEmpty()) {
+//			response.setCount(lMateria.size());
+//			response.setMessage("Materias encontradas correctamente");
+//			response.setStatus("Oki");
+//			response.setList(lMateria);
+//		} else {
+//			response.setList(null);
+//			response.setMessage("Materia no encontrada");
+//			response.setStatus("Oki pero no fue encontrada");
+//			response.setCount(lMateria.size());
+//		}
+//
+//		return response;
+//	}
+	
+	
 
 }

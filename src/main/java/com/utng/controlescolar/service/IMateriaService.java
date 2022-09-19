@@ -21,5 +21,7 @@ public interface IMateriaService {
 	ResponseGC<Materia> ActualizarMateria(MateriaFiltroDTO filtro, MateriaDTO materiaDto);
 	
 	ResponseGC<Materia> BuscarMateriaPorNombreClave (String nombre, String clave);
+	
+//	ResponseGC<Materia> BuscarMateriasPorIds(Integer[] materiasIds);
 
 }

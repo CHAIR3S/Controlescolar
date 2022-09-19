@@ -53,9 +53,13 @@ public class ConsultaCalificacionRepository implements IConsultaCalificacionRepo
 
 		Optional<Materia> materiaOptional = materiaRepository.findById(calificacionUpdate.getMateria());
 		Optional<Alumno> alumnoOptional = alumnoRepository.findById(calificacionUpdate.getAlumno());
-		alumno = filtro.getAlumno();
+		
 		materia = filtro.getMateria();
-		List<Calificacion> calificacionList = calificacionRepository.findByAlumnoAndMateria(alumno, materia);
+		alumno = filtro.getAlumno();
+		
+		Optional<Materia> materiaBusqueda = materiaRepository.findById(materia);
+		Optional<Alumno> alumnoBusqueda = alumnoRepository.findById(alumno);
+		List<Calificacion> calificacionList = calificacionRepository.findByAlumnoAndMateria(alumnoBusqueda.get(), materiaBusqueda.get());
 
 		if (!materiaOptional.isEmpty()) {
 				configConsulta.set(raizCalificacion.<Integer>get("cal1"), calificacionUpdate.getCal1());
@@ -64,12 +68,12 @@ public class ConsultaCalificacionRepository implements IConsultaCalificacionRepo
 				configConsulta.set(raizCalificacion.<Alumno>get("alumno"), alumnoOptional.get());
 				configConsulta.set(raizCalificacion.<Materia>get("materia"), materiaOptional.get());
 
-			if (filtro.getMateria() != null)
+			if (alumnoBusqueda.get() != null)
 			{
 				predicates.add(
 						cb.equal(raizCalificacion.get("materia"), filtro.getMateria()));
 			}
-			if (filtro.getAlumno() != null)
+			if (materiaBusqueda.get() != null)
 			{
 				predicates.add(
 						cb.equal(raizCalificacion.get("alumno"), filtro.getAlumno()));

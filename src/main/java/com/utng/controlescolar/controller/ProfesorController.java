@@ -16,7 +16,7 @@ import com.utng.controlescolar.service.IProfesorService;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/profesor")
-public class ProfesorService {
+public class ProfesorController {
 	
 	@Autowired
 	private IProfesorService profesorService;

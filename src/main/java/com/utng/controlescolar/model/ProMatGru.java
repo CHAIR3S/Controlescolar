@@ -4,9 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -29,13 +32,16 @@ public class ProMatGru implements Serializable {
 	@Column(name = "PK_PR_MT_GR")
 	private Integer id;
 	
-	@Column(name = "FK_PROFESOR")
-	private Integer profesor;
+	@ManyToOne(fetch= FetchType.EAGER)  
+	@JoinColumn(name = "FK_PROFESOR") 
+	private Profesor profesor;
 	
-	@Column(name = "FK_MATERIA")
-	private Integer materia;
+	@ManyToOne(fetch= FetchType.EAGER)  
+	@JoinColumn(name = "FK_MATERIA") 
+	private Materia materia;
 	
-	@Column(name = "FK_GRUPO")
-	private Integer grupo;
+	@ManyToOne(fetch= FetchType.EAGER)  // Primero dice que puede haber muchos alumnos para un solo grupo. La Foreing Key EAGER hace que al llamar al grupo, cargue todo su contenido
+	@JoinColumn(name = "FK_GRUPO") //Liga la columna con el FK_GRUPO, que es  la FK
+	private Grupo grupo; // Variable de tipo grupo
 
 }

@@ -1,5 +1,6 @@
 package com.utng.controlescolar.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -134,6 +135,7 @@ public class AlumnoServiceImpl implements IAlumnoService {
 
 		ResponseGC<Alumno> response = new ResponseGC<>();// Inicializamos Clase Genérica ResponseGC
 
+		
 		response = consultaAlumnoRepository.consultarAlumnoFiltro(filtro);
 
 		return response;

@@ -76,7 +76,7 @@ public class AlumnoController {
 		return new ResponseEntity<ResponseGC<Alumno>> (response, HttpStatus.OK);
 	}
 	
-	@GetMapping(path = "/buscarAlumnoFiltro/",
+	@GetMapping(path = "/buscarAlumnoFiltro",
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseGC<Alumno>> buscarAlumnoFiltro(AlumnoFiltroDTO filtro) {
 		

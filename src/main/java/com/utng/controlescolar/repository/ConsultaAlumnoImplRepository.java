@@ -97,69 +97,96 @@ public class ConsultaAlumnoImplRepository implements IConsultaAlumnoRepository {
 
 		// Listas que usaremos
 		ResponseGC<Alumno> response = new ResponseGC<>();// Inicializamos Clase Genérica ResponseGC
+		
 		List<Predicate> predicates = new ArrayList<>();
+		Optional<Grupo> grupoOptional;
+		Optional<Estatus> estatusOptional;
 		String expediente = filtro.getExpediente();
 
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaUpdate<Alumno> configConsulta = cb.createCriteriaUpdate(Alumno.class);
 		Root<Alumno> raizAlumno = configConsulta.from(Alumno.class);
 
-		Optional<Grupo> grupoOptional = grupoRepository.findById(alumnoDtoUpdate.getGrupo());
-		Optional<Estatus> estatusOptional = estatusRepository.findById(alumnoDtoUpdate.getEstatus());
+
+		
+
 		List<Alumno> alumnoList = alumnoRepository.findByExpediente(expediente);
 //		
 //		response = consulta.consultarAlumnoFiltro(filtro);
 
-		if (!grupoOptional.isEmpty()) {
-//			if(alumnoDtoUpdate.getExpediente() != null) 
-//			{
-				configConsulta.set(raizAlumno.<String>get("expediente"), alumnoDtoUpdate.getExpediente());
-//			}
-//			if(alumnoDtoUpdate.getNombre() != null)
-//			{
-				configConsulta.set(raizAlumno.<String>get("nombre"), alumnoDtoUpdate.getNombre());
-//			}
-//			if (alumnoDtoUpdate.getApePaterno() != null)
-//			{
-				configConsulta.set(raizAlumno.<String>get("apePaterno"), alumnoDtoUpdate.getApePaterno());
-//			}
-//			if (alumnoDtoUpdate.getApeMaterno() != null)
-//			{
-				configConsulta.set(raizAlumno.<String>get("apeMaterno"), alumnoDtoUpdate.getApeMaterno());
-//			}
-//			if (alumnoDtoUpdate.getCurp() != null)
-//			{
-				configConsulta.set(raizAlumno.<String>get("curp"), alumnoDtoUpdate.getCurp());
-//			}
-//			if (alumnoDtoUpdate.getGenero() != null)
-//			{
-				configConsulta.set(raizAlumno.<String>get("genero"), alumnoDtoUpdate.getGenero());
-//			}
-//			if (alumnoDtoUpdate.getCorreo() != null)
-//			{
-				configConsulta.set(raizAlumno.<String>get("correo"), alumnoDtoUpdate.getCorreo());
-//			}
-//			if (estatusOptional.get() != null)
-//			{
-				configConsulta.set(raizAlumno.<Estatus>get("estatus"), estatusOptional.get());
-//			}
-//			if (grupoOptional.get() != null)
-//			{
-				configConsulta.set(raizAlumno.<Grupo>get("grupo"), grupoOptional.get());
-//			}
+
+			if(alumnoDtoUpdate.getExpediente() == "") 
+			{
+				alumnoDtoUpdate.setExpediente(null);
+			}
+			configConsulta.set(raizAlumno.<String>get("expediente"), alumnoDtoUpdate.getExpediente());
+			
+			if(alumnoDtoUpdate.getNombre() == "") 
+			{
+				alumnoDtoUpdate.setNombre(null);
+			}
+			configConsulta.set(raizAlumno.<String>get("nombre"), alumnoDtoUpdate.getNombre());
+			
+			if(alumnoDtoUpdate.getApePaterno() == "") 
+			{
+				alumnoDtoUpdate.setApePaterno(null);
+			}
+			configConsulta.set(raizAlumno.<String>get("apePaterno"), alumnoDtoUpdate.getApePaterno());
+			
+			if(alumnoDtoUpdate.getApeMaterno() == "") 
+			{
+				alumnoDtoUpdate.setApeMaterno(null);
+			}
+			configConsulta.set(raizAlumno.<String>get("apeMaterno"), alumnoDtoUpdate.getApeMaterno());
+			
+			if(alumnoDtoUpdate.getCurp() == "") 
+			{
+				alumnoDtoUpdate.setCurp(null);
+			}
+			configConsulta.set(raizAlumno.<String>get("curp"), alumnoDtoUpdate.getCurp());
+				
+			if(alumnoDtoUpdate.getGenero() == "") 
+			{
+				alumnoDtoUpdate.setGenero(null);
+			}
+			configConsulta.set(raizAlumno.<String>get("genero"), alumnoDtoUpdate.getGenero());
+				
+			if(alumnoDtoUpdate.getCorreo() == "") 
+			{
+				alumnoDtoUpdate.setCorreo(null);
+			}
+			configConsulta.set(raizAlumno.<String>get("correo"), alumnoDtoUpdate.getCorreo());
+			
+			
+				
+
+			estatusOptional = estatusRepository.findById(alumnoDtoUpdate.getEstatus());
+			
+			configConsulta.set(raizAlumno.<Estatus>get("estatus"), estatusOptional.get());
+				
+			
+			
+
+		    grupoOptional = grupoRepository.findById(alumnoDtoUpdate.getGrupo());
+			
+			configConsulta.set(raizAlumno.<Grupo>get("grupo"), grupoOptional.get());
 
 			
-			if (filtro.getExpediente() != null)
+			
+			
+			if (!(filtro.getExpediente() == null || filtro.getExpediente() == ""))
 			{
 				predicates.add(
 						cb.like(raizAlumno.get("expediente"), filtro.getExpediente()));
 			}
-			if (filtro.getCurp() != null)
+			
+			if (!(filtro.getCurp() == null || filtro.getCurp() == ""))
 			{
 				predicates.add(
 						cb.like(raizAlumno.get("curp"), filtro.getCurp()));
 			}
-			if (filtro.getCorreo() != null)
+			
+			if (!(filtro.getCorreo() == null || filtro.getCorreo() == ""))
 			{
 				predicates.add(
 						cb.like(raizAlumno.get("correo"), filtro.getCorreo()));
@@ -183,15 +210,12 @@ public class ConsultaAlumnoImplRepository implements IConsultaAlumnoRepository {
 			response.setList(alumnoList);
 			response.setMessage("Alumno actualizado correctamente");
 			response.setStatus("Realizado");
-		} 
-		else 
-		{
-			response.setData(null);
-			response.setMessage("El grupo escrito no existe");
-			response.setStatus("Ok pero no encontrado ese grupo");
-		}
+		
 
 		entityManager.close();
+		
+		System.out.println(alumnoDtoUpdate);
+		System.out.println(filtro);
 
 		return response;
 	}

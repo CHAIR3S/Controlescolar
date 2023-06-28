@@ -64,13 +64,50 @@ public class AlumnoServiceImpl implements IAlumnoService {
 		{
 			Alumno alumno = new Alumno();// Alumno que se va a guardar
 
+			
+			if(alumnoDto.getExpediente() == "") 
+			{
+				alumnoDto.setExpediente(null);
+			}
 			alumno.setExpediente(alumnoDto.getExpediente());
+			
+			if(alumnoDto.getNombre() == "") 
+			{
+				alumnoDto.setNombre(null);
+			}
 			alumno.setNombre(alumnoDto.getNombre());
+			
+			if(alumnoDto.getApePaterno() == "") 
+			{
+				alumnoDto.setApePaterno(null);
+			}
 			alumno.setApePaterno(alumnoDto.getApePaterno());
+			
+			if(alumnoDto.getApeMaterno() == "") 
+			{
+				alumnoDto.setApeMaterno(null);
+			}
 			alumno.setApeMaterno(alumnoDto.getApeMaterno());
+			
+			if(alumnoDto.getCurp() == "") 
+			{
+				alumnoDto.setCurp(null);
+			}
 			alumno.setCurp(alumnoDto.getCurp());
+			
+			if(alumnoDto.getGenero() == "") 
+			{
+				alumnoDto.setGenero(null);
+			}
 			alumno.setGenero(alumnoDto.getGenero());
+			
+			if(alumnoDto.getCorreo() == "") 
+			{
+				alumnoDto.setCorreo(null);
+			}
 			alumno.setCorreo(alumnoDto.getCorreo());
+			
+			
 			alumno.setEstatus(estatusOptional.get());
 			alumno.setGrupo(grupoOptional.get());
 
@@ -99,6 +136,7 @@ public class AlumnoServiceImpl implements IAlumnoService {
 		response.setData(null);
 		response.setMessage("Alumno eliminado correctamente:)");
 		response.setStatus("Oki doki");
+		
 
 		return response;
 	}
